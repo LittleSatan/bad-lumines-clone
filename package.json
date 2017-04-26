@@ -1,0 +1,17 @@
+{
+  "name": "maidchan",
+  "version": "0.0.1",
+  "description": "This is Maid-Chan, a small AI by Ryuunosuke. You can ask me everything.",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.14.1",
+    "path": "^0.12.7",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marissa",
+  "license": "ISC"
+}
