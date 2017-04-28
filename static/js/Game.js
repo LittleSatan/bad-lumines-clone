@@ -117,7 +117,7 @@ function resize() {
         c.style.width = w;
         c.style.height = h;
     } else if (settings.makeBig == 1 || w < gwidth || h < gheight) {
-        if (h / w < 0.75) {
+        if (h / w < 9 / 16) {
             c.style.height = h;
             c.style.width = (h / gheight * gwidth);
         } else {

@@ -52,7 +52,11 @@ function Highscore() {
             for (let i = 0; i <= 9; i++) {
                 ctx.font = "45px Courier";
                 ctx.textAlign = "left";
-                ctx.fillText(this.highscoreList[i].name, 275, 175 + i * 45);
+                if (i < 9) {
+                    ctx.fillText((i + 1) + ".  " + this.highscoreList[i].name, 275, 175 + i * 45);
+                } else {
+                    ctx.fillText((i + 1) + ". " + this.highscoreList[i].name, 275, 175 + i * 45);
+                }
                 ctx.textAlign = "right";
                 ctx.fillText(this.highscoreList[i].score, 1005, 175 + i * 45);
             }
@@ -67,7 +71,6 @@ function Highscore() {
             } else
                 ctx.fillText("loading", gwidth * 0.5, 390);
         }
-
 
         if (this.frame < 15) {
             ctx.globalAlpha = 1 - ((1 / 15) * this.frame);
