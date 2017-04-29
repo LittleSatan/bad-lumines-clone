@@ -219,14 +219,29 @@ function GameScreen() {
                 }
             }
 
-            // blocks will fall down
+            // // blocks will fall down
+            // for (let x = 1; x < this.arena.length - 1; x++) {
+            //     for (let y = this.arena[x].length - 2; y > 2; y--) {
+            //         if (this.arena[x][y].color == 0) {
+            //             if (this.arena[x][y - 1].fallDown()) {
+            //                 this.arena[x][y] = this.arena[x][y - 1];
+            //                 this.arena[x][y - 1] = new Block(0);
+            //             }
+            //         }
+            //     }
+            // }
             for (let x = 1; x < this.arena.length - 1; x++) {
-                for (let y = this.arena[x].length - 2; y > 2; y--) {
-                    if (this.arena[x][y].color == 0) {
+                vertical: for (let y = this.arena[x].length - 2; y > 2; y--) {
+                    if (this.arena[x][y].color == 0 && (this.arena[x][y - 1].color == 1 || this.arena[x][y - 1].color == 2)) {
+
                         if (this.arena[x][y - 1].fallDown()) {
-                            this.arena[x][y] = this.arena[x][y - 1];
-                            this.arena[x][y - 1] = new Block(0);
+                            for (let a = y; a > 2; a--) {
+                                this.arena[x][a] = this.arena[x][a - 1];
+                                this.arena[x][a - 1] = new Block(0);
+                            }
                         }
+                        break vertical;
+
                     }
                 }
             }
