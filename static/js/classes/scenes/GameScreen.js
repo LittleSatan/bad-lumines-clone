@@ -137,6 +137,7 @@ function GameScreen() {
         if (this.gameState === 1) {
 
             if (keys[13] == 2) {
+                audioContext.resume();
                 this.gameState = 0;
                 return;
             }
@@ -160,6 +161,7 @@ function GameScreen() {
         if (this.gameState === 0) {
 
             if (keys[13] == 2) {
+                audioContext.suspend();
                 this.gameState = 1;
                 return;
             }
@@ -219,17 +221,6 @@ function GameScreen() {
                 }
             }
 
-            // // blocks will fall down
-            // for (let x = 1; x < this.arena.length - 1; x++) {
-            //     for (let y = this.arena[x].length - 2; y > 2; y--) {
-            //         if (this.arena[x][y].color == 0) {
-            //             if (this.arena[x][y - 1].fallDown()) {
-            //                 this.arena[x][y] = this.arena[x][y - 1];
-            //                 this.arena[x][y - 1] = new Block(0);
-            //             }
-            //         }
-            //     }
-            // }
             for (let x = 1; x < this.arena.length - 1; x++) {
                 vertical: for (let y = this.arena[x].length - 2; y > 2; y--) {
                     if (this.arena[x][y].color == 0 && (this.arena[x][y - 1].color == 1 || this.arena[x][y - 1].color == 2)) {

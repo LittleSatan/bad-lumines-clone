@@ -2,6 +2,7 @@ function Block(color) {
 
     this.color = color;
     this.fallDownTimer = 0;
+    this.group = 0;
 
     this.fallDown = function() {
         if (this.fallDownTimer == 5) {
