@@ -5,6 +5,7 @@ function GameScreen() {
         this.waitBeforeFall = [120, 80, 60],
         this.time = 0,
         this.frame = 0,
+        this.score = 0,
         this.gameOverFrame = 0,
         this.fadeout = 0,
         this.level = 0,
@@ -295,6 +296,22 @@ function GameScreen() {
                 }
             }
         }
+
+        ctx.fillStyle = '#000';
+        ctx.globalAlpha = 0.7;
+        ctx.fillRect(gwidth - 250 + 60, 170, 170, 100);
+        ctx.fillRect(gwidth - 250 + 60, 300, 170, 100);
+
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = '#FFF';
+        ctx.textAlign = "left";
+        ctx.font = "45px Courier";
+        ctx.fillText("Level:", gwidth - 250 + 63, 210);
+        ctx.fillText("Score:", gwidth - 250 + 63, 340);
+
+        ctx.textAlign = "right";
+        ctx.fillText((this.level + 1), gwidth - 250 + 55 + 170, 256);
+        ctx.fillText(this.score, gwidth - 250 + 55 + 170, 386);
 
         if (this.frame < 15) {
             ctx.globalAlpha = 1 - ((1 / 15) * this.frame);
