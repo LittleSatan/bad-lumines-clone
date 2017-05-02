@@ -224,17 +224,51 @@ function GameScreen() {
 
             for (let x = 1; x < this.arena.length - 1; x++) {
                 vertical: for (let y = this.arena[x].length - 2; y > 2; y--) {
+                    this.arena[x][y].falling = false;
                     if (this.arena[x][y].color == 0 && (this.arena[x][y - 1].color == 1 || this.arena[x][y - 1].color == 2)) {
 
                         if (this.arena[x][y - 1].fallDown()) {
+
                             for (let a = y; a > 2; a--) {
                                 this.arena[x][a] = this.arena[x][a - 1];
+                                this.arena[x][a].falling = true;
                                 this.arena[x][a - 1] = new Block(0);
                             }
                         }
                         break vertical;
 
                     }
+                }
+            }
+
+            for (let x = 1; x < this.arena.length - 2; x++) {
+                for (let y = this.arena[x].length - 2; y > 3; y--) {
+                    if (this.arena[x][y].color == 1 || this.arena[x][y].color == 2) {
+                        if (!this.arena[x][y].falling) {
+                            if (((this.arena[x][y].color == this.arena[x + 1][y].color) && !this.arena[x + 1][y].falling) &&
+                                ((this.arena[x][y].color == this.arena[x][y + 1].color) && !this.arena[x][y + 1].falling) &&
+                                ((this.arena[x][y].color == this.arena[x + 1][y + 1].color) && !this.arena[x + 1][y + 1].falling)) {
+                                console.log("found block");
+                                this.score += 100;
+                                this.arena[x][y] = new Block(0);
+                                this.arena[x + 1][y] = new Block(0);
+                                this.arena[x][y + 1] = new Block(0);
+                                this.arena[x + 1][y + 1] = new Block(0);
+                            } else if (((this.arena[x][y].color == this.arena[x + 1][y].color) && !this.arena[x + 1][y].falling) &&
+                                ((this.arena[x][y].color == this.arena[x][y - 1].color) && !this.arena[x][y - 1].falling) &&
+                                ((this.arena[x][y].color == this.arena[x + 1][y - 1].color) && !this.arena[x + 1][y - 1].falling)) {
+                                console.log("found block");
+                                this.score += 100;
+                                this.arena[x][y] = new Block(0);
+                                this.arena[x + 1][y] = new Block(0);
+                                this.arena[x][y - 1] = new Block(0);
+                                this.arena[x + 1][y - 1] = new Block(0);
+                            }
+
+                        }
+
+                    }
+
                 }
             }
 

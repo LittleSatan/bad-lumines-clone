@@ -3,6 +3,7 @@ function Block(color) {
     this.color = color;
     this.fallDownTimer = 0;
     this.group = 0;
+    this.falling = false;
 
     this.fallDown = function() {
         if (this.fallDownTimer == 5) {
