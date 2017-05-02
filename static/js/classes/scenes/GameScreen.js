@@ -1,8 +1,8 @@
 function GameScreen() {
 
-    this.barSpeed = [5, 2, 3],
-        this.fallSpeed = [50, 40, 20],
-        this.waitBeforeFall = [120, 80, 60],
+    this.barSpeed = [5, 2, 3, 7],
+        this.fallSpeed = [50, 40, 20, 8],
+        this.waitBeforeFall = [120, 80, 60, 20],
         this.time = 0,
         this.frame = 0,
         this.score = 0,
@@ -11,6 +11,7 @@ function GameScreen() {
         this.level = 0,
         this.gameState = 0,
         this.playerPos = 7,
+        this.cleared = 0,
         this.playerCurrentBlock = [
             [new Block(Math.floor(Math.random() * 2) + 1), new Block(Math.floor(Math.random() * 2) + 1)],
             [new Block(Math.floor(Math.random() * 2) + 1), new Block(Math.floor(Math.random() * 2) + 1)]
@@ -276,7 +277,12 @@ function GameScreen() {
                     if (this.arena[x][y].willDisappear) {
                         this.arena[x][y] = new Block(0);
                         this.score += counter * 10;
+                        this.cleared++;
                         counter++;
+                        if (this.cleared >= 100) {
+                            this.cleared -= 100;
+                            this.level++;
+                        }
                     }
                 }
             }
@@ -344,6 +350,7 @@ function GameScreen() {
         ctx.globalAlpha = 0.7;
         ctx.fillRect(gwidth - 250 + 60, 170, 170, 100);
         ctx.fillRect(gwidth - 250 + 60, 300, 170, 100);
+        ctx.fillRect(gwidth - 250 + 60, 430, 170, 100);
 
         ctx.globalAlpha = 1;
         ctx.fillStyle = '#FFF';
@@ -351,10 +358,12 @@ function GameScreen() {
         ctx.font = "45px Courier";
         ctx.fillText("Level:", gwidth - 250 + 63, 210);
         ctx.fillText("Score:", gwidth - 250 + 63, 340);
+        ctx.fillText("Cleared:", gwidth - 250 + 63, 470);
 
         ctx.textAlign = "right";
         ctx.fillText((this.level + 1), gwidth - 250 + 55 + 170, 256);
         ctx.fillText(this.score, gwidth - 250 + 55 + 170, 386);
+        ctx.fillText(`${this.cleared}%`, gwidth - 250 + 55 + 170, 516);
 
         if (this.frame < 15) {
             ctx.globalAlpha = 1 - ((1 / 15) * this.frame);
