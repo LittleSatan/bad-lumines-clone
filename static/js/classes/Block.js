@@ -4,6 +4,7 @@ function Block(color) {
     this.fallDownTimer = 0;
     this.group = 0;
     this.falling = false;
+    this.willDisappear = false;
 
     this.fallDown = function() {
         if (this.fallDownTimer == 5) {

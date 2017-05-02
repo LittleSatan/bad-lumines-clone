@@ -242,33 +242,42 @@ function GameScreen() {
             }
 
             for (let x = 1; x < this.arena.length - 2; x++) {
-                for (let y = this.arena[x].length - 2; y > 3; y--) {
+                for (let y = this.arena[x].length - 2; y > 2; y--) {
                     if (this.arena[x][y].color == 1 || this.arena[x][y].color == 2) {
                         if (!this.arena[x][y].falling) {
                             if (((this.arena[x][y].color == this.arena[x + 1][y].color) && !this.arena[x + 1][y].falling) &&
                                 ((this.arena[x][y].color == this.arena[x][y + 1].color) && !this.arena[x][y + 1].falling) &&
                                 ((this.arena[x][y].color == this.arena[x + 1][y + 1].color) && !this.arena[x + 1][y + 1].falling)) {
                                 console.log("found block");
-                                this.score += 100;
-                                this.arena[x][y] = new Block(0);
-                                this.arena[x + 1][y] = new Block(0);
-                                this.arena[x][y + 1] = new Block(0);
-                                this.arena[x + 1][y + 1] = new Block(0);
+                                this.arena[x][y].willDisappear = true;
+                                this.arena[x + 1][y].willDisappear = true;
+                                this.arena[x][y + 1].willDisappear = true;
+                                this.arena[x + 1][y + 1].willDisappear = true;
                             } else if (((this.arena[x][y].color == this.arena[x + 1][y].color) && !this.arena[x + 1][y].falling) &&
                                 ((this.arena[x][y].color == this.arena[x][y - 1].color) && !this.arena[x][y - 1].falling) &&
                                 ((this.arena[x][y].color == this.arena[x + 1][y - 1].color) && !this.arena[x + 1][y - 1].falling)) {
                                 console.log("found block");
-                                this.score += 100;
-                                this.arena[x][y] = new Block(0);
-                                this.arena[x + 1][y] = new Block(0);
-                                this.arena[x][y - 1] = new Block(0);
-                                this.arena[x + 1][y - 1] = new Block(0);
+                                this.arena[x][y].willDisappear = true;
+                                this.arena[x + 1][y].willDisappear = true;
+                                this.arena[x][y - 1].willDisappear = true;
+                                this.arena[x + 1][y - 1].willDisappear = true;
                             }
 
                         }
 
                     }
 
+                }
+            }
+
+            let counter = 1;
+            for (let x = 1; x < this.arena.length - 1; x++) {
+                for (let y = this.arena[x].length - 2; y > 1; y--) {
+                    if (this.arena[x][y].willDisappear) {
+                        this.arena[x][y] = new Block(0);
+                        this.score += counter * 10;
+                        counter++;
+                    }
                 }
             }
 
