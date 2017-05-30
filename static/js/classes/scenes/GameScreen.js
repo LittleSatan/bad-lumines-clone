@@ -249,7 +249,6 @@ function GameScreen() {
                             if (((this.arena[x][y].color == this.arena[x + 1][y].color) && !this.arena[x + 1][y].falling) &&
                                 ((this.arena[x][y].color == this.arena[x][y + 1].color) && !this.arena[x][y + 1].falling) &&
                                 ((this.arena[x][y].color == this.arena[x + 1][y + 1].color) && !this.arena[x + 1][y + 1].falling)) {
-                                console.log("found block");
                                 this.arena[x][y].willDisappear = true;
                                 this.arena[x + 1][y].willDisappear = true;
                                 this.arena[x][y + 1].willDisappear = true;
@@ -257,17 +256,13 @@ function GameScreen() {
                             } else if (((this.arena[x][y].color == this.arena[x + 1][y].color) && !this.arena[x + 1][y].falling) &&
                                 ((this.arena[x][y].color == this.arena[x][y - 1].color) && !this.arena[x][y - 1].falling) &&
                                 ((this.arena[x][y].color == this.arena[x + 1][y - 1].color) && !this.arena[x + 1][y - 1].falling)) {
-                                console.log("found block");
                                 this.arena[x][y].willDisappear = true;
                                 this.arena[x + 1][y].willDisappear = true;
                                 this.arena[x][y - 1].willDisappear = true;
                                 this.arena[x + 1][y - 1].willDisappear = true;
                             }
-
                         }
-
                     }
-
                 }
             }
 
